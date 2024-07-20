@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PrecisionValidator.class)
 public @interface Precision {
     int value() default 1;
-    String message() default "Check the precision";
+    String message() default "must be not more than {value} digits after floating point";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

@@ -1,5 +1,6 @@
 package com.example.test_task.dto;
 
+import com.example.test_task.annotations.Precision;
 import com.example.test_task.entities.Image;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.DecimalMax;
@@ -26,10 +27,12 @@ public class ProductDto {
     private String weight;
     @DecimalMin(value = "0.0")
     @DecimalMax(value = "5.0")
+    @Precision
     private double rating;
     private String category;
     private String color;
     @DecimalMin(value = "0.01")
+    @Precision(2)
     private double price;
     private List<Image> images;
     private List<String> features;

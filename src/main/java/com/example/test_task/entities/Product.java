@@ -9,11 +9,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@SuperBuilder
 @Data
 @Entity
 @NoArgsConstructor
@@ -32,7 +30,7 @@ public class Product {
     private String weight;
     @DecimalMin(value = "0.0")
     @DecimalMax(value = "5.0")
-//    @Precision()
+    @Precision
     private double rating;
     @NotBlank
     private String category;
@@ -40,7 +38,7 @@ public class Product {
     private String description;
     private String color;
     @DecimalMin(value = "0.01")
-//    @Precision(2)
+    @Precision(value = 2)
     private double price;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Image> images;
