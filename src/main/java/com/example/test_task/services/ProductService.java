@@ -60,7 +60,7 @@ public class ProductService {
             try {
                 product.addImage(removeBackgroundService.removeBackground(image, id, host));
             } catch (IOException | InterruptedException e) {
-                throw new BadRequestException("Image could not be saved: " + e.getMessage());
+                throw new BadRequestException(e.getMessage());
             }
             productRepository.save(product);
         }
