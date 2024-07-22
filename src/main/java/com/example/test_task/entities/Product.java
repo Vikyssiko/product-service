@@ -9,13 +9,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@SuperBuilder
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +46,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Image> images;
     @ElementCollection
-    @CollectionTable(name = "product_feature", joinColumns = @JoinColumn(name = "product_id"))
+    @CollectionTable(name = "product_features", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "feature")
     private List<String> features;
 
@@ -85,7 +88,7 @@ public class Product {
             description.append(", вес: ").append(this.weight);
         }
         if (this.features != null && !this.features.isEmpty()) {
-            description.append(", ").append(String.join(", ", this.features));
+            description.append(", особенности: ").append(String.join(", ", this.features));
         }
         this.description =  description.toString();
     }

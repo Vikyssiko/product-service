@@ -1,4 +1,4 @@
-CREATE TABLE product
+CREATE TABLE products
 (
     id              BIGINT PRIMARY KEY AUTO_INCREMENT,
     name            VARCHAR(255) NOT NULL,
@@ -14,18 +14,18 @@ CREATE TABLE product
     image           VARCHAR(255)
 );
 
-CREATE TABLE product_feature
+CREATE TABLE product_features
 (
     product_id INT,
     index      INT,
     feature    VARCHAR(255)
 );
 
-CREATE TABLE image
+CREATE TABLE images
 (
     id          BIGINT PRIMARY KEY AUTO_INCREMENT,
     product_id  BIGINT NOT NULL,
     name        VARCHAR(255) NOT NULL,
     url         VARCHAR(255) NOT NULL,
-    CONSTRAINT fk_product_picture FOREIGN KEY (product_id) REFERENCES product (id)
+    CONSTRAINT fk_product_picture FOREIGN KEY (product_id) REFERENCES products (id)
 );

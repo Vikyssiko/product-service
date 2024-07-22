@@ -75,9 +75,9 @@ public class ProductService {
 
     @Transactional
     public Product update(long id, ProductDto productDto) {
-        Product newProduct = conversionService.convert(productDto, Product.class);
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
+        Product newProduct = conversionService.convert(productDto, Product.class);
         product.setAllFields(newProduct);
         return productRepository.save(product);
     }

@@ -22,9 +22,9 @@ public class RemoveBackgroundService {
     public Image removeBackground(MultipartFile file, Long productId, String host) throws IOException, InterruptedException {
         byte[] bytes = file.getBytes();
         String encodedImage = Base64.getEncoder().encodeToString(bytes);
-        String imageName = productId + "_" + file.getOriginalFilename();
         HttpResponse<byte[]> response = httpClient.removeBackground(encodedImage);
         if (response.statusCode() == 200) {
+            String imageName = productId + "_" + file.getOriginalFilename();
             String path = "src/main/resources/public/images/" + imageName;
             String url = String.join("/", "http:/", host, "images", imageName);
             try (FileOutputStream outputStream = new FileOutputStream(path)) {
